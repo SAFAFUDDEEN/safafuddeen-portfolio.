@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safafuddeen T U — Robotics Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300;400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f4ff;
+    --bg2: #e8eeff;
+    --surface: rgba(255,255,255,0.85);
+    --surface2: rgba(255,255,255,0.6);
+    --blue: #1a56e8;
+    --blue-light: #4d7fff;
+    --gold: #d4a017;
+    --gold-light: #f5c842;
+    --teal: #0db8a4;
+    --navy: #0f1f5c;
+    --text: #1a2340;
+    --muted: #6b7db3;
+    --border: rgba(26,86,232,0.12);
+    --shadow: 0 8px 32px rgba(26,86,232,0.12);
+    --shadow-lg: 0 24px 60px rgba(26,86,232,0.18);
+    --glow-blue: 0 0 30px rgba(26,86,232,0.25);
+    --glow-gold: 0 0 20px rgba(212,160,23,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* SUBTLE PATTERN BG */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(26,86,232,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(13,184,164,0.05) 0%, transparent 50%),
+      radial-gradient(circle at 60% 10%, rgba(212,160,23,0.04) 0%, transparent 40%);
+  }
+
+  /* HEXAGON GRID */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52'%3E%3Cpolygon points='30,2 58,17 58,47 30,62 2,47 2,17' fill='none' stroke='%231a56e8' stroke-width='0.3' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 60px 52px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+    background: rgba(240,244,255,0.92);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 20px rgba(26,86,232,0.07);
+  }
+
+  .nav-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--navy);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 8px rgba(26,86,232,0.6);
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 8px rgba(26,86,232,0.6); transform: scale(1); }
+    50% { box-shadow: 0 0 16px rgba(26,86,232,0.9); transform: scale(1.3); }
+  }
+
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif; font-weight: 600;
+    transition: color 0.3s; position: relative; padding-bottom: 3px;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+    border-radius: 2px; transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { width: 24px; height: 2px; background: var(--blue); border-radius: 2px; transition: all 0.3s; display: block; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 0;
+    padding: 80px 5% 40px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left { z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,86,232,0.08);
+    border: 1px solid rgba(26,86,232,0.2);
+    padding: 7px 16px; border-radius: 30px; margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse-dot 1.5s infinite; }
+  .hero-badge span { font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; color: var(--blue); letter-spacing: 0.12em; }
+
+  .hero-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 700; line-height: 1.0; letter-spacing: -0.01em;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-name .line1 { display: block; color: var(--navy); }
+  .hero-name .line2 {
+    display: block;
+    background: linear-gradient(120deg, var(--blue), var(--teal));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem; color: var(--muted); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.85;
+    font-weight: 300; max-width: 480px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn {
+    padding: 13px 28px; font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; border-radius: 6px;
+    transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    color: #fff; box-shadow: var(--glow-blue);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(26,86,232,0.4); }
+  .btn-outline {
+    border: 2px solid var(--blue); color: var(--blue); background: transparent;
+  }
+  .btn-outline:hover { background: rgba(26,86,232,0.06); transform: translateY(-3px); }
+
+  .hero-metrics {
+    display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.8s 0.5s ease both; flex-wrap: wrap; gap: 2rem;
+  }
+  .metric-val {
+    font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 700;
+    color: var(--blue); line-height: 1;
+  }
+  .metric-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  /* 3D ROBOT CANVAS */
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  #robot-canvas {
+    width: 100%; max-width: 520px; height: 520px;
+    border-radius: 50%;
+    filter: drop-shadow(0 20px 60px rgba(26,86,232,0.2));
+  }
+
+  .canvas-ring {
+    position: absolute;
+    border-radius: 50%; border: 1px solid rgba(26,86,232,0.15);
+    animation: ring-rotate 20s linear infinite;
+  }
+  .ring1 { width: 540px; height: 540px; }
+  .ring2 { width: 600px; height: 600px; border-style: dashed; animation-direction: reverse; animation-duration: 30s; }
+  .ring3 { width: 480px; height: 480px; border-color: rgba(13,184,164,0.12); animation-duration: 15s; }
+
+  @keyframes ring-rotate { to { transform: rotate(360deg); } }
+
+  .canvas-badge {
+    position: absolute; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; backdrop-filter: blur(10px);
+    box-shadow: var(--shadow); font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem; color: var(--blue); letter-spacing: 0.1em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse-dot 1.2s infinite; }
+  .cb1 { top: 15%; right: 2%; animation: float 4s ease-in-out infinite; }
+  .cb2 { bottom: 20%; left: 2%; animation: float 4s ease-in-out infinite 2s; }
+  .cb3 { top: 50%; right: -2%; animation: float 4s ease-in-out infinite 1s; }
+
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+  .section-wrap { padding: 90px 5%; max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+    color: var(--blue); letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .section-eyebrow::before { content: '▸'; color: var(--teal); }
+
+  .section-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+    color: var(--navy); margin-bottom: 3.5rem; line-height: 1.1;
+  }
+  .section-heading span {
+    background: linear-gradient(120deg, var(--blue), var(--teal));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* ABOUT */
+  #about {
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(240,244,255,0.5));
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+
+  .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 1.2rem; font-size: 0.98rem; }
+  .about-text p strong { color: var(--navy); font-weight: 600; }
+
+  .info-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1.8rem; }
+  .info-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px; box-shadow: var(--shadow);
+  }
+  .info-card-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; font-family: 'Share Tech Mono', monospace; }
+  .info-card-val { font-size: 0.88rem; color: var(--navy); font-weight: 500; }
+
+  .about-card {
+    background: linear-gradient(135deg, var(--navy), #1a2f80);
+    border-radius: 16px; padding: 30px; color: #fff;
+    box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+  }
+  .about-card::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(13,184,164,0.15);
+  }
+  .about-card::after {
+    content: ''; position: absolute; bottom: -30px; left: -20px;
+    width: 120px; height: 120px; border-radius: 50%;
+    background: rgba(26,86,232,0.2);
+  }
+  .about-card-title { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1.2rem; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+  .tech-pill {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; padding: 5px 12px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px; color: rgba(255,255,255,0.85); letter-spacing: 0.06em;
+  }
+  .tech-pill.accent { background: rgba(13,184,164,0.2); border-color: rgba(13,184,164,0.4); color: #5eeadb; }
+
+  .about-stat-row { display: flex; gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .about-stat-num { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
+  .about-stat-lbl { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+
+  /* SKILLS */
+  #skills { }
+
+  .skills-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
+
+  .skill-items { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .skill-row {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 22px; box-shadow: var(--shadow);
+    display: grid; grid-template-columns: 32px 1fr auto; gap: 14px; align-items: center;
+    transition: all 0.3s;
+  }
+  .skill-row:hover { border-color: rgba(26,86,232,0.3); transform: translateX(6px); box-shadow: var(--shadow-lg); }
+  .skill-emoji { font-size: 1.4rem; }
+  .skill-info-name { font-family: 'Rajdhani', sans-serif; font-weight: 600; color: var(--navy); font-size: 0.95rem; margin-bottom: 6px; }
+  .skill-track { height: 5px; background: rgba(26,86,232,0.08); border-radius: 10px; overflow: hidden; border-radius: 10px; }
+  .skill-bar2 {
+    height: 100%; border-radius: 10px;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+    width: 0%; transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 8px rgba(26,86,232,0.4);
+  }
+  .skill-num { font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; color: var(--blue); font-weight: 500; min-width: 34px; text-align: right; }
+
+  .soft-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; box-shadow: var(--shadow);
+  }
+  .soft-panel-title { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 1.4rem; }
+  .soft-grid { display: flex; flex-direction: column; gap: 10px; }
+  .soft-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 8px;
+    background: rgba(26,86,232,0.04); border: 1px solid transparent;
+    transition: all 0.3s; font-size: 0.88rem; color: var(--muted);
+  }
+  .soft-item:hover { border-color: rgba(26,86,232,0.2); color: var(--navy); background: rgba(26,86,232,0.07); }
+  .soft-icon { font-size: 1rem; }
+
+  /* PROJECTS */
+  #projects {
+    background: linear-gradient(135deg, rgba(15,31,92,0.03), rgba(13,184,164,0.03));
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+
+  .proj-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 26px; box-shadow: var(--shadow); transition: all 0.35s;
+    position: relative; overflow: hidden;
+  }
+  .proj-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .proj-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(26,86,232,0.2); }
+  .proj-card:hover::before { transform: scaleX(1); }
+  .proj-card.featured { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  .proj-number { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 12px; }
+  .proj-icon { font-size: 2rem; margin-bottom: 10px; }
+  .proj-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 10px; line-height: 1.4; }
+  .proj-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .proj-tag {
+    font-family: 'Share Tech Mono', monospace; font-size: 0.63rem; padding: 4px 10px;
+    border-radius: 4px; letter-spacing: 0.06em;
+  }
+  .pt-blue { background: rgba(26,86,232,0.08); color: var(--blue); border: 1px solid rgba(26,86,232,0.18); }
+  .pt-teal { background: rgba(13,184,164,0.08); color: var(--teal); border: 1px solid rgba(13,184,164,0.18); }
+  .pt-gold { background: rgba(212,160,23,0.1); color: #b8860b; border: 1px solid rgba(212,160,23,0.2); }
+  .pt-navy { background: rgba(15,31,92,0.07); color: var(--navy); border: 1px solid rgba(15,31,92,0.15); }
+
+  /* EXPERIENCE */
+  #experience { }
+
+  .exp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  .exp-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 30px; box-shadow: var(--shadow); transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .exp-card::after {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,86,232,0.06), transparent);
+  }
+  .exp-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+  .exp-period { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .exp-title { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .exp-co { font-size: 0.88rem; color: var(--blue); font-weight: 500; margin-bottom: 16px; }
+  .exp-body { font-size: 0.87rem; color: var(--muted); line-height: 1.85; }
+
+  /* EDUCATION */
+  #education {
+    background: linear-gradient(180deg, rgba(26,86,232,0.02), transparent);
+    border-top: 1px solid var(--border);
+  }
+
+  .edu-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 26px; box-shadow: var(--shadow); transition: all 0.3s; position: relative;
+  }
+  .edu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(26,86,232,0.25); }
+  .edu-icon { font-size: 2rem; margin-bottom: 12px; }
+  .edu-year { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  .edu-deg { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
+  .edu-inst { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* CONTACT */
+  #contact { padding-bottom: 60px; }
+
+  .contact-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+  }
+
+  .contact-cta {
+    background: linear-gradient(135deg, var(--navy), #1535a0);
+    border-radius: 20px; padding: 40px; color: #fff; box-shadow: var(--shadow-lg);
+    position: relative; overflow: hidden;
+  }
+  .contact-cta::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(13,184,164,0.12);
+  }
+  .contact-cta h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; }
+  .contact-cta p { color: rgba(255,255,255,0.65); line-height: 1.8; font-size: 0.95rem; margin-bottom: 2rem; }
+  .contact-cta .btn-white {
+    background: #fff; color: var(--blue); padding: 12px 24px;
+    border-radius: 8px; font-family: 'Rajdhani', sans-serif; font-weight: 700;
+    font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.3s;
+  }
+  .contact-cta .btn-white:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none; color: var(--text);
+    padding: 16px 20px; border: 1px solid var(--border); border-radius: 12px;
+    background: var(--surface); box-shadow: var(--shadow); transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+  .contact-link:hover { border-color: rgba(26,86,232,0.35); color: var(--blue); transform: translateX(6px); box-shadow: var(--shadow-lg); }
+  .link-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(26,86,232,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .link-text-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
+  .link-text-val { font-size: 0.9rem; color: var(--navy); font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.5);
+    padding: 24px 5%; display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 1;
+  }
+  .footer-brand { font-family: 'Rajdhani', sans-serif; color: #fff; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; }
+  .footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-right { display: none; }
+    .hero-desc { margin: 0 auto 2.5rem; }
+    .hero-cta { justify-content: center; }
+    .hero-metrics { justify-content: center; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-layout { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .proj-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .exp-cards, .edu-cards { grid-template-columns: 1fr; }
+    .nav-links { display: none; position: fixed; top: 68px; left: 0; right: 0;
+      background: rgba(240,244,255,0.97); flex-direction: column;
+      padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border); backdrop-filter: blur(20px); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    SAFAFUDDEEN T U
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>Available for Opportunities</span>
+    </div>
+    <h1 class="hero-name">
+      <span class="line1">SAFAFUDDEEN</span>
+      <span class="line2">T U</span>
+    </h1>
+    <div class="hero-title-tag">Robotics Engineer · AI · Computer Vision</div>
+    <p class="hero-desc">
+      Designing autonomous intelligent systems that bridge engineering precision with human-centric thinking. Specialized in ROS2, computer vision, and embedded robotics for real-world applications.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">↗ View Projects</a>
+      <a href="#contact" class="btn btn-outline">✉ Get In Touch</a>
+    </div>
+    <div class="hero-metrics">
+      <div>
+        <div class="metric-val">5+</div>
+        <div class="metric-label">Projects</div>
+      </div>
+      <div>
+        <div class="metric-val">2+</div>
+        <div class="metric-label">Years Exp.</div>
+      </div>
+      <div>
+        <div class="metric-val">10+</div>
+        <div class="metric-label">Technologies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="canvas-ring ring1"></div>
+    <div class="canvas-ring ring2"></div>
+    <div class="canvas-ring ring3"></div>
+    <canvas id="robot-canvas"></canvas>
+    <div class="canvas-badge cb1"><div class="badge-dot"></div> ROS2 Active</div>
+    <div class="canvas-badge cb2"><div class="badge-dot"></div> AI Powered</div>
+    <div class="canvas-badge cb3"><div class="badge-dot"></div> Autonomous</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-eyebrow">About Me</div>
+    <h2 class="section-heading">Who I <span>Am</span></h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a <strong>Robotics Engineer</strong> based in Kozhikode, Kerala — holding a Diploma in AI & Robotics from I-Hub School of Learning (BECIL) and a BA in Sociology from the University of Calicut.</p>
+        <p>This cross-disciplinary background gives me a rare edge: I design robots that are technically excellent <strong>and</strong> socially aware. Whether it's autonomous navigation, computer vision, or embedded control systems — I build solutions that work reliably in the real world.</p>
+        <p>Trained as a <strong>Robotics Trainer</strong> and sharpened as a <strong>Robotics Intern</strong>, I bring both teaching clarity and hands-on engineering depth to every project I take on.</p>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-label">Location</div>
+            <div class="info-card-val">Kozhikode, Kerala</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Status</div>
+            <div class="info-card-val">Open to Opportunities</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Domain</div>
+            <div class="info-card-val">Robotics · AI · CV</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Email</div>
+            <div class="info-card-val">safafusafu@gmail.com</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="about-card">
+          <div class="about-card-title">// Core Tech Stack</div>
+          <div class="tech-stack">
+            <span class="tech-pill accent">ROS / ROS2</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill accent">OpenCV</span>
+            <span class="tech-pill">Embedded C</span>
+            <span class="tech-pill accent">Raspberry Pi</span>
+            <span class="tech-pill">Arduino</span>
+            <span class="tech-pill">Deep Learning</span>
+            <span class="tech-pill">Fusion 360</span>
+            <span class="tech-pill accent">ML / AI</span>
+          </div>
+          <div class="about-stat-row">
+            <div>
+              <div class="about-stat-num">5+</div>
+              <div class="about-stat-lbl">Robotics Projects</div>
+            </div>
+            <div>
+              <div class="about-stat-num">2+</div>
+              <div class="about-stat-lbl">Years Active</div>
+            </div>
+            <div>
+              <div class="about-stat-num">∞</div>
+              <div class="about-stat-lbl">Curiosity</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Technical Arsenal</div>
+    <h2 class="section-heading">Skills &amp; <span>Expertise</span></h2>
+    <div class="skills-layout">
+      <div class="skill-items" id="skillItems">
+        <div class="skill-row reveal">
+          <div class="skill-emoji">🤖</div>
+          <div>
+            <div class="skill-info-name">ROS / ROS2</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="90"></div></div>
+          </div>
+          <div class="skill-num">90%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">🐍</div>
+          <div>
+            <div class="skill-info-name">Python</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="88"></div></div>
+          </div>
+          <div class="skill-num">88%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">👁️</div>
+          <div>
+            <div class="skill-info-name">OpenCV / Computer Vision</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="85"></div></div>
+          </div>
+          <div class="skill-num">85%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">🧠</div>
+          <div>
+            <div class="skill-info-name">AI / Machine Learning</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="80"></div></div>
+          </div>
+          <div class="skill-num">80%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">⚡</div>
+          <div>
+            <div class="skill-info-name">Embedded C / Arduino</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="82"></div></div>
+          </div>
+          <div class="skill-num">82%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">🍓</div>
+          <div>
+            <div class="skill-info-name">Raspberry Pi</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="85"></div></div>
+          </div>
+          <div class="skill-num">85%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">🔬</div>
+          <div>
+            <div class="skill-info-name">Deep Learning</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="72"></div></div>
+          </div>
+          <div class="skill-num">72%</div>
+        </div>
+        <div class="skill-row reveal">
+          <div class="skill-emoji">🎨</div>
+          <div>
+            <div class="skill-info-name">Autodesk Fusion 360</div>
+            <div class="skill-track"><div class="skill-bar2" data-width="70"></div></div>
+          </div>
+          <div class="skill-num">70%</div>
+        </div>
+      </div>
+      <div class="soft-panel reveal">
+        <div class="soft-panel-title">Soft Skills</div>
+        <div class="soft-grid">
+          <div class="soft-item"><span class="soft-icon">🎤</span> Presentation</div>
+          <div class="soft-item"><span class="soft-icon">💬</span> Communication</div>
+          <div class="soft-item"><span class="soft-icon">⏱️</span> Time Management</div>
+          <div class="soft-item"><span class="soft-icon">👑</span> Leadership</div>
+          <div class="soft-item"><span class="soft-icon">🔄</span> Adaptability</div>
+          <div class="soft-item"><span class="soft-icon">📊</span> Project Management</div>
+          <div class="soft-item"><span class="soft-icon">📚</span> Continuous Learning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Work Showcase</div>
+    <h2 class="section-heading">Featured <span>Projects</span></h2>
+    <div class="projects-grid">
+
+      <div class="proj-card featured reveal">
+        <div>
+          <div class="proj-number">PROJECT_01 · 2024 · FEATURED</div>
+          <div class="proj-icon">🤖</div>
+          <div class="proj-name">Autonomous Navigation — TortoiseBot with ArUco Markers</div>
+          <div class="proj-desc">Designed and built an autonomous mobile robot that detects ArUco markers as waypoints. Integrated real-time obstacle avoidance, decision-making, and precise movement control for reliable indoor navigation.</div>
+          <div class="proj-tags">
+            <span class="proj-tag pt-blue">Python</span>
+            <span class="proj-tag pt-teal">ROS</span>
+            <span class="proj-tag pt-gold">OpenCV</span>
+            <span class="proj-tag pt-navy">Arduino</span>
+          </div>
+        </div>
+        <div>
+          <div class="proj-number">PROJECT_02 · 2024</div>
+          <div class="proj-icon">🦀</div>
+          <div class="proj-name">Hexapod Crab Robot with Face Detection</div>
+          <div class="proj-desc">6-legged robot using Raspberry Pi and Haar Cascade face detection — dynamically advances or retreats based on detected person's distance. Real-time, responsive, and accurate.</div>
+          <div class="proj-tags">
+            <span class="proj-tag pt-blue">Raspberry Pi</span>
+            <span class="proj-tag pt-teal">Python</span>
+            <span class="proj-tag pt-gold">OpenCV</span>
+            <span class="proj-tag pt-navy">GPIO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-number">PROJECT_03 · 2024</div>
+        <div class="proj-icon">🏫</div>
+        <div class="proj-name">Smart Attendance via Face Recognition</div>
+        <div class="proj-desc">Automated attendance system using Python and OpenCV. Records to Excel and sends SMS alerts to parents — scalable for educational institutions.</div>
+        <div class="proj-tags">
+          <span class="proj-tag pt-blue">Python</span>
+          <span class="proj-tag pt-teal">Face Recognition</span>
+          <span class="proj-tag pt-gold">Excel API</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-number">PROJECT_04 · 2024</div>
+        <div class="proj-icon">⚠️</div>
+        <div class="proj-name">Automatic Gas Leak Detection System</div>
+        <div class="proj-desc">Safety system using Arduino Uno, MQ5 sensor, and servo motor. Triggers buzzer alerts and automates gas flow regulation in real-time for industrial and residential use.</div>
+        <div class="proj-tags">
+          <span class="proj-tag pt-blue">Arduino</span>
+          <span class="proj-tag pt-teal">MQ5 Sensor</span>
+          <span class="proj-tag pt-navy">Embedded C</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-number">PROJECT_05 · 2024</div>
+        <div class="proj-icon">⚡</div>
+        <div class="proj-name">Power Consumption Prediction with ML</div>
+        <div class="proj-desc">Random Forest Regressor model predicting power usage from temperature, humidity, and wind speed. Fine-tuned for accuracy and scalability in sustainable energy management.</div>
+        <div class="proj-tags">
+          <span class="proj-tag pt-blue">Python</span>
+          <span class="proj-tag pt-teal">Random Forest</span>
+          <span class="proj-tag pt-gold">Scikit-learn</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Career Path</div>
+    <h2 class="section-heading">Work <span>Experience</span></h2>
+    <div class="exp-cards">
+      <div class="exp-card reveal">
+        <div class="exp-period">2024 — Present</div>
+        <div class="exp-title">Robotics Trainer</div>
+        <div class="exp-co">Mahaguru Institute of Technology</div>
+        <div class="exp-body">Delivered hands-on training on robotics, Arduino, sensors, actuators, and embedded systems. Guided students through lab activities, project development, and troubleshooting. Prepared learning materials and assessments, supporting real-time robotics projects and workshops that enhanced student technical skills and industry readiness.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">2024</div>
+        <div class="exp-title">Robotics Intern</div>
+        <div class="exp-co">I-Hub Robotics, Ernakulam</div>
+        <div class="exp-body">Gained hands-on experience designing, programming, and testing robotic systems. Integrated mechanical, electrical, and software engineering to develop functional robots. Enhanced skills in embedded systems, sensor integration, and robotic control mechanisms while solving real-world automation challenges.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Academic Background</div>
+    <h2 class="section-heading">Education &amp; <span>Certifications</span></h2>
+    <div class="edu-cards">
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-year">2025</div>
+        <div class="edu-deg">Diploma in Robotics & Artificial Intelligence</div>
+        <div class="edu-inst">I-Hub School of Learning · BECIL</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-icon">📋</div>
+        <div class="edu-year">2023</div>
+        <div class="edu-deg">Diploma in Computerized Financial Management</div>
+        <div class="edu-inst">Government of Kerala</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-icon">🏛️</div>
+        <div class="edu-year">2019 — 2022</div>
+        <div class="edu-deg">Bachelor of Arts in Sociology</div>
+        <div class="edu-inst">Feroke Co-operative Arts & Science College · University of Calicut</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-heading">Let's <span>Connect</span></h2>
+    <div class="contact-wrap">
+      <div class="contact-cta reveal">
+        <h3>Open to New Opportunities</h3>
+        <p>Whether you're hiring a robotics engineer, looking for AI development expertise, or want to collaborate on an exciting project — I'd love to talk.</p>
+        <a href="mailto:safafusafu@gmail.com" class="btn-white">✉ Send a Message</a>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:safafusafu@gmail.com" class="contact-link">
+          <div class="link-icon">✉</div>
+          <div><div class="link-text-label">Email</div><div class="link-text-val">safafusafu@gmail.com</div></div>
+        </a>
+        <a href="tel:6238054511" class="contact-link">
+          <div class="link-icon">📱</div>
+          <div><div class="link-text-label">Phone</div><div class="link-text-val">+91 6238054511</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/safafuddeen-t-u0b47902a0" target="_blank" class="contact-link">
+          <div class="link-icon">in</div>
+          <div><div class="link-text-label">LinkedIn</div><div class="link-text-val">safafuddeen-t-u</div></div>
+        </a>
+        <a href="#" class="contact-link">
+          <div class="link-icon">📍</div>
+          <div><div class="link-text-label">Location</div><div class="link-text-val">Kozhikode, Kerala, India</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">SAFAFUDDEEN T U · Robotics Engineer</div>
+  <div class="footer-copy">© 2025 · Built for Excellence</div>
+</footer>
+
+<!-- THREE.JS 3D ROBOT -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function() {
+  const canvas = document.getElementById('robot-canvas');
+  if (!canvas) return;
+
+  const W = canvas.offsetWidth || 480, H = canvas.offsetHeight || 480;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, W/H, 0.1, 100);
+  camera.position.set(0, 1.2, 5.5);
+  camera.lookAt(0, 0.5, 0);
+
+  // LIGHTS
+  const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambient);
+
+  const dirLight = new THREE.DirectionalLight(0x1a56e8, 1.2);
+  dirLight.position.set(5, 8, 5);
+  dirLight.castShadow = true;
+  scene.add(dirLight);
+
+  const rimLight = new THREE.DirectionalLight(0x0db8a4, 0.8);
+  rimLight.position.set(-5, 3, -5);
+  scene.add(rimLight);
+
+  const goldLight = new THREE.PointLight(0xd4a017, 1.0, 10);
+  goldLight.position.set(0, 3, 2);
+  scene.add(goldLight);
+
+  // MATERIALS
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0xdce8ff, metalness: 0.7, roughness: 0.15 });
+  const darkMat = new THREE.MeshStandardMaterial({ color: 0x0f1f5c, metalness: 0.8, roughness: 0.2 });
+  const glowMat = new THREE.MeshStandardMaterial({ color: 0x1a56e8, emissive: 0x1a56e8, emissiveIntensity: 0.8, metalness: 0.3, roughness: 0.1 });
+  const tealMat = new THREE.MeshStandardMaterial({ color: 0x0db8a4, emissive: 0x0db8a4, emissiveIntensity: 0.7 });
+  const goldMat = new THREE.MeshStandardMaterial({ color: 0xd4a017, emissive: 0xf5c842, emissiveIntensity: 0.4, metalness: 0.9, roughness: 0.1 });
+  const glassMat = new THREE.MeshStandardMaterial({ color: 0x4d7fff, transparent: true, opacity: 0.5, metalness: 1, roughness: 0 });
+  const jointMat = new THREE.MeshStandardMaterial({ color: 0x8090c0, metalness: 0.9, roughness: 0.1 });
+
+  const robot = new THREE.Group();
+  scene.add(robot);
+
+  // TORSO
+  const torso = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.3, 0.65, 2, 2, 2), bodyMat);
+  torso.position.y = 0.9;
+  robot.add(torso);
+
+  // Chest panel
+  const chest = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.05), darkMat);
+  chest.position.set(0, 1.0, 0.35);
+  robot.add(chest);
+
+  // Chest glow strips
+  [-0.15, 0.15].forEach(x => {
+    const strip = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.4, 0.04), glowMat);
+    strip.position.set(x, 1.0, 0.38);
+    robot.add(strip);
+  });
+
+  // Center orb
+  const orb = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), tealMat);
+  orb.position.set(0, 0.88, 0.39);
+  robot.add(orb);
+
+  // Shoulder pads
+  [-1, 1].forEach(side => {
+    const pad = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.18, 0.18, 8), bodyMat);
+    pad.position.set(side * 0.72, 1.45, 0);
+    pad.rotation.z = side * 0.2;
+    robot.add(pad);
+
+    // Shoulder LED
+    const led = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), goldMat);
+    led.position.set(side * 0.72, 1.55, 0.1);
+    robot.add(led);
+  });
+
+  // UPPER ARMS
+  const upperArmGeo = new THREE.CylinderGeometry(0.12, 0.1, 0.55, 8);
+  [-1, 1].forEach(side => {
+    const arm = new THREE.Mesh(upperArmGeo, bodyMat);
+    arm.position.set(side * 0.82, 1.05, 0);
+    arm.rotation.z = side * 0.15;
+    robot.add(arm);
+
+    // Elbow joint
+    const elbow = new THREE.Mesh(new THREE.SphereGeometry(0.1, 8, 8), jointMat);
+    elbow.position.set(side * 0.86, 0.75, 0);
+    robot.add(elbow);
+
+    // FOREARM
+    const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.07, 0.45, 8), bodyMat);
+    forearm.position.set(side * 0.92, 0.48, 0.05);
+    forearm.rotation.set(0.2, 0, side * 0.25);
+    robot.add(forearm);
+
+    // HAND
+    const hand = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.18, 0.1), darkMat);
+    hand.position.set(side * 0.98, 0.2, 0.1);
+    robot.add(hand);
+
+    // Finger glow
+    const finger = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.1, 0.04), glowMat);
+    finger.position.set(side * 0.98, 0.08, 0.12);
+    robot.add(finger);
+  });
+
+  // HEAD
+  const headGroup = new THREE.Group();
+  headGroup.position.y = 1.85;
+  robot.add(headGroup);
+
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.7, 0.65, 2, 2, 2), bodyMat);
+  headGroup.add(head);
+
+  // Visor
+  const visor = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.22, 0.04), glassMat);
+  visor.position.set(0, 0.06, 0.34);
+  headGroup.add(visor);
+
+  // Eye LEDs
+  [-0.14, 0.14].forEach(x => {
+    const eye = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), glowMat);
+    eye.position.set(x, 0.07, 0.36);
+    headGroup.add(eye);
+  });
+
+  // Head antenna
+  const antBase = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.25, 6), darkMat);
+  antBase.position.set(0, 0.47, 0);
+  headGroup.add(antBase);
+  const antTip = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), goldMat);
+  antTip.position.set(0, 0.6, 0);
+  headGroup.add(antTip);
+
+  // Head ear panels
+  [-1, 1].forEach(side => {
+    const ear = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.3, 0.25), darkMat);
+    ear.position.set(side * 0.42, 0, 0);
+    headGroup.add(ear);
+  });
+
+  // NECK
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.12, 0.25, 8), jointMat);
+  neck.position.y = 1.6;
+  robot.add(neck);
+
+  // HIP
+  const hip = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.25, 0.55), darkMat);
+  hip.position.y = 0.2;
+  robot.add(hip);
+
+  // LEGS
+  [-1, 1].forEach(side => {
+    // Upper leg
+    const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.55, 8), bodyMat);
+    thigh.position.set(side * 0.28, -0.2, 0);
+    robot.add(thigh);
+
+    // Knee
+    const knee = new THREE.Mesh(new THREE.SphereGeometry(0.13, 8, 8), jointMat);
+    knee.position.set(side * 0.28, -0.52, 0);
+    robot.add(knee);
+
+    // Shin
+    const shin = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.1, 0.5, 8), bodyMat);
+    shin.position.set(side * 0.28, -0.8, 0.04);
+    shin.rotation.x = 0.05;
+    robot.add(shin);
+
+    // Foot
+    const foot = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.12, 0.38), darkMat);
+    foot.position.set(side * 0.28, -1.1, 0.1);
+    robot.add(foot);
+
+    // Foot glow
+    const fGlow = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.04, 0.3), tealMat);
+    fGlow.position.set(side * 0.28, -1.1, 0.1);
+    robot.add(fGlow);
+
+    // Knee LED
+    const kled = new THREE.Mesh(new THREE.SphereGeometry(0.04, 6, 6), tealMat);
+    kled.position.set(side * 0.28, -0.52, 0.14);
+    robot.add(kled);
+  });
+
+  // FLOATING ORBIT RING around robot
+  const ringGeo = new THREE.TorusGeometry(1.8, 0.015, 8, 80);
+  const ringMesh = new THREE.Mesh(ringGeo, glowMat);
+  ringMesh.rotation.x = Math.PI / 2.5;
+  robot.add(ringMesh);
+
+  const ring2Geo = new THREE.TorusGeometry(2.1, 0.010, 8, 80);
+  const ring2Mesh = new THREE.Mesh(ring2Geo, tealMat);
+  ring2Mesh.rotation.x = Math.PI / 3;
+  ring2Mesh.rotation.z = Math.PI / 4;
+  robot.add(ring2Mesh);
+
+  // FLOATING PARTICLES around robot
+  const particles = [];
+  const particleGeo = new THREE.SphereGeometry(0.04, 6, 6);
+  for (let i = 0; i < 12; i++) {
+    const mat = new THREE.MeshStandardMaterial({
+      color: i % 3 === 0 ? 0x1a56e8 : i % 3 === 1 ? 0x0db8a4 : 0xd4a017,
+      emissive: i % 3 === 0 ? 0x1a56e8 : i % 3 === 1 ? 0x0db8a4 : 0xd4a017,
+      emissiveIntensity: 0.9
+    });
+    const p = new THREE.Mesh(particleGeo, mat);
+    const angle = (i / 12) * Math.PI * 2;
+    const r = 1.6 + Math.random() * 0.6;
+    p.userData = { angle, r, speed: 0.003 + Math.random() * 0.004, yOff: (Math.random()-0.5)*2 };
+    p.position.set(Math.cos(angle)*r, 0.5 + p.userData.yOff, Math.sin(angle)*r);
+    robot.add(p);
+    particles.push(p);
+  }
+
+  // BASE PLATFORM
+  const platGeo = new THREE.CylinderGeometry(0.7, 0.8, 0.08, 32);
+  const platMat = new THREE.MeshStandardMaterial({ color: 0x0f1f5c, metalness: 0.9, roughness: 0.1 });
+  const platform = new THREE.Mesh(platGeo, platMat);
+  platform.position.y = -1.17;
+  robot.add(platform);
+
+  // Platform ring glow
+  const platRing = new THREE.Mesh(new THREE.TorusGeometry(0.72, 0.03, 8, 50), tealMat);
+  platRing.position.y = -1.14;
+  platRing.rotation.x = Math.PI/2;
+  robot.add(platRing);
+
+  // Mouse interaction
+  let targetRotY = 0, currentRotY = 0;
+  document.addEventListener('mousemove', (e) => {
+    const cx = window.innerWidth / 2;
+    targetRotY = ((e.clientX - cx) / cx) * 0.5;
+  });
+
+  // Animation loop
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.016;
+
+    // Smooth rotation
+    currentRotY += (targetRotY - currentRotY) * 0.05;
+    robot.rotation.y = currentRotY + Math.sin(t * 0.4) * 0.12;
+
+    // Hover float
+    robot.position.y = Math.sin(t * 0.8) * 0.08;
+
+    // Head subtle bob
+    headGroup.rotation.x = Math.sin(t * 0.6) * 0.05;
+    headGroup.rotation.y = Math.sin(t * 0.4) * 0.08;
+
+    // Eye pulse
+    glowMat.emissiveIntensity = 0.6 + Math.sin(t * 2) * 0.4;
+    tealMat.emissiveIntensity = 0.5 + Math.sin(t * 1.5 + 1) * 0.3;
+    goldMat.emissiveIntensity = 0.3 + Math.sin(t * 2.5) * 0.2;
+
+    // Orbit rings
+    ringMesh.rotation.z = t * 0.3;
+    ring2Mesh.rotation.y = t * 0.2;
+
+    // Particles orbit
+    particles.forEach(p => {
+      p.userData.angle += p.userData.speed;
+      p.position.x = Math.cos(p.userData.angle) * p.userData.r;
+      p.position.z = Math.sin(p.userData.angle) * p.userData.r;
+      p.position.y = 0.5 + p.userData.yOff + Math.sin(t + p.userData.angle) * 0.2;
+    });
+
+    // Orb pulse
+    orb.scale.setScalar(1 + Math.sin(t * 3) * 0.15);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize
+  window.addEventListener('resize', () => {
+    const w = canvas.offsetWidth, h = canvas.offsetHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+  });
+})();
+
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('.skill-bar2').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }, i * 80);
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ACTIVE NAV
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+current ? 'var(--blue)' : '';
+  });
+});
+</script>
+</body>
+</html>
